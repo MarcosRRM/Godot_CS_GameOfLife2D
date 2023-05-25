@@ -1,0 +1,243 @@
+[gd_scene load_steps=5 format=3 uid="uid://xq2jsquka2a4"]
+
+[ext_resource type="Script" path="res://Scripts/CellsGrid.cs" id="1_qpwg3"]
+[ext_resource type="Script" path="res://Scripts/ExpandOptionsButton.cs" id="3_k1n2t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dvt4p"]
+font_size = 30
+font_color = Color(1, 1, 0.494118, 1)
+shadow_size = 4
+shadow_color = Color(1, 0.709804, 0.168627, 1)
+shadow_offset = Vector2(1, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_447b8"]
+font_size = 22
+font_color = Color(1, 1, 0.494118, 1)
+shadow_size = 2
+shadow_color = Color(1, 0.709804, 0.168627, 1)
+
+[node name="PanelContainer" type="ReferenceRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CellsGrid" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_qpwg3")
+
+[node name="MenuPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(330, 0)
+layout_mode = 1
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 332.0
+offset_bottom = 282.0
+
+[node name="MenuContainer" type="VBoxContainer" parent="MenuPanel"]
+layout_direction = 2
+layout_mode = 2
+
+[node name="HeaderContainer" type="HBoxContainer" parent="MenuPanel/MenuContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MenuPanel/MenuContainer/HeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "GAME OF LIFE"
+label_settings = SubResource("LabelSettings_dvt4p")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="ExpandOptionsButton" type="Button" parent="MenuPanel/MenuContainer/HeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 17
+text = "-"
+script = ExtResource("3_k1n2t")
+
+[node name="OptionsContainer" type="VBoxContainer" parent="MenuPanel/MenuContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ThrottlerLabelContainer" type="HBoxContainer" parent="MenuPanel/MenuContainer/OptionsContainer"]
+layout_mode = 2
+
+[node name="ThrottlerLabel" type="Label" parent="MenuPanel/MenuContainer/OptionsContainer/ThrottlerLabelContainer"]
+layout_mode = 2
+text = "update speed:"
+
+[node name="ThrottlerValue" type="Label" parent="MenuPanel/MenuContainer/OptionsContainer/ThrottlerLabelContainer"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "10 per second"
+horizontal_alignment = 2
+
+[node name="ThrottlerSlider" type="HSlider" parent="MenuPanel/MenuContainer/OptionsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+max_value = 30.0
+value = 10.0
+
+[node name="AliveColorContainer" type="HBoxContainer" parent="MenuPanel/MenuContainer/OptionsContainer"]
+layout_mode = 2
+
+[node name="AliveColorLabel" type="Label" parent="MenuPanel/MenuContainer/OptionsContainer/AliveColorContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "alive cell color:"
+
+[node name="AliveColorPicker" type="ColorPickerButton" parent="MenuPanel/MenuContainer/OptionsContainer/AliveColorContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+color = Color(1, 1, 1, 1)
+edit_alpha = false
+
+[node name="DeadColorContainer" type="HBoxContainer" parent="MenuPanel/MenuContainer/OptionsContainer"]
+layout_mode = 2
+
+[node name="DeadColorLabel" type="Label" parent="MenuPanel/MenuContainer/OptionsContainer/DeadColorContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "dead cell color:"
+
+[node name="DeadColorPicker" type="ColorPickerButton" parent="MenuPanel/MenuContainer/OptionsContainer/DeadColorContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="HSeparator" type="HSeparator" parent="MenuPanel/MenuContainer/OptionsContainer"]
+layout_mode = 2
+
+[node name="GridSizeContainer" type="HBoxContainer" parent="MenuPanel/MenuContainer/OptionsContainer"]
+layout_mode = 2
+
+[node name="GridSizeLabel" type="Label" parent="MenuPanel/MenuContainer/OptionsContainer/GridSizeContainer"]
+layout_mode = 2
+text = "grid size:
+"
+
+[node name="GridSizeH" type="SpinBox" parent="MenuPanel/MenuContainer/OptionsContainer/GridSizeContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+min_value = 10.0
+max_value = 1000.0
+value = 100.0
+alignment = 2
+update_on_text_changed = true
+prefix = "X"
+
+[node name="GridSizeV" type="SpinBox" parent="MenuPanel/MenuContainer/OptionsContainer/GridSizeContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+min_value = 10.0
+max_value = 1000.0
+value = 100.0
+alignment = 2
+update_on_text_changed = true
+prefix = "Y"
+
+[node name="InitialCountContainer" type="HBoxContainer" parent="MenuPanel/MenuContainer/OptionsContainer"]
+layout_mode = 2
+
+[node name="InitialCountLabel" type="Label" parent="MenuPanel/MenuContainer/OptionsContainer/InitialCountContainer"]
+layout_mode = 2
+text = "initial alive cells:
+"
+
+[node name="InitialCountInput" type="SpinBox" parent="MenuPanel/MenuContainer/OptionsContainer/InitialCountContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 100.0
+max_value = 9999.0
+value = 5000.0
+alignment = 2
+update_on_text_changed = true
+suffix = "cells"
+
+[node name="NewGenerationButton" type="Button" parent="MenuPanel/MenuContainer/OptionsContainer"]
+layout_mode = 2
+theme_type_variation = &"ConfirmButton"
+text = "NEW GENERATION"
+
+[node name="FPSPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -92.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 64.0
+grow_horizontal = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="FPSLabelContainer" type="HBoxContainer" parent="FPSPanel"]
+layout_mode = 2
+
+[node name="FPSLabel" type="Label" parent="FPSPanel/FPSLabelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FPS:"
+
+[node name="FPSValue" type="Label" parent="FPSPanel/FPSLabelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "000"
+horizontal_alignment = 2
+
+[node name="CreditsPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -64.0
+offset_right = 108.0
+offset_bottom = -8.0
+grow_vertical = 0
+
+[node name="CreditsLabelContainer" type="HBoxContainer" parent="CreditsPanel"]
+layout_mode = 2
+
+[node name="CreditsDescription" type="Label" parent="CreditsPanel/CreditsLabelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "An application by "
+
+[node name="CreditsName" type="Label" parent="CreditsPanel/CreditsLabelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Marcos Roberto R. Marques"
+label_settings = SubResource("LabelSettings_447b8")
+horizontal_alignment = 2
+uppercase = true
+
+[connection signal="pressed" from="MenuPanel/MenuContainer/HeaderContainer/ExpandOptionsButton" to="MenuPanel/MenuContainer/HeaderContainer/ExpandOptionsButton" method="ToggleState"]
+[connection signal="value_changed" from="MenuPanel/MenuContainer/OptionsContainer/ThrottlerSlider" to="CellsGrid" method="SetSimulationSpeed"]
+[connection signal="color_changed" from="MenuPanel/MenuContainer/OptionsContainer/DeadColorContainer/DeadColorPicker" to="CellsGrid" method="set_color"]
+[connection signal="value_changed" from="MenuPanel/MenuContainer/OptionsContainer/GridSizeContainer/GridSizeH" to="CellsGrid" method="RecalculateMaxAliveCellsInput"]
+[connection signal="value_changed" from="MenuPanel/MenuContainer/OptionsContainer/GridSizeContainer/GridSizeV" to="CellsGrid" method="RecalculateMaxAliveCellsInput"]
+[connection signal="pressed" from="MenuPanel/MenuContainer/OptionsContainer/NewGenerationButton" to="CellsGrid" method="StartNewGeneration"]
